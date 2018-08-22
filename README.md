@@ -1,7 +1,7 @@
 # An Analysis Attempt
 From [furiousthinking](http://cian.furiousthinking.org/code/dark/) blog\
-Forgive me redefining the wheel but Im just making sure everybody’s on the same page.\
-  
+Forgive me redefining the wheel but Im just making sure everybody’s on the same page
+
 We know the Youtube game consists of videos with URLs (and their IDs) that point to other URLs. So the Dot results should eventually look like:
 ```dot
 digraph G {
