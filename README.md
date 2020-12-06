@@ -15,14 +15,14 @@ The raw XML holds the target URL IDs and probably the video’s title. It is (so
 ```json
 {
   "hvkjP6dqpfY" : { "name" : "The Dark Room",
-    "link" : { "GO NORTH" : "X6PD4IUlCwo",
-      "TURN ON LIGHT SWITCH" : "-WG36-XrcU4",
-      "SLEEP" : "lsteokF2w8Q",
-      "WHY?" : "PPifzjxTahY" } },
+                    "link" : { "GO NORTH" : "X6PD4IUlCwo",
+                               "TURN ON LIGHT SWITCH" : "-WG36-XrcU4",
+                               "SLEEP" : "lsteokF2w8Q",
+                               "WHY?" : "PPifzjxTahY" } },
 ```
 
-JSON is made of pairs of keys and values separated by a colon, a value can be another nested object with more pairs. Note the whole file has a parent object (first curly bracket), then each ‘video’ object starting with the current URL ID as key, containing key “name” and then it’s value is the video title, then another object with the annotation’s text label and then the annotation’s URL IDs. (I could be wrong)\
-This is then converted into Dot syntax. I don’t understand Python but here’s my attempt to analyse the Python form the blog:
+JSON is made of pairs of keys and values separated by a colon, a value can be another nested object with more pairs. Note the whole file has a parent object (first curly bracket), then each ‘video’ object starting with the current URL ID as key, containing key "name" and then it’s value is the video title, then another object with the annotation’s text label and then the annotation’s URL IDs. (I could be wrong)\
+This is then converted into Dot syntax. I don’t understand Python but here's my attempt to analyse the Python form the blog:
 ```python
 # First it seems to import a ‘json’ module to use the methods
 # a for loop cycles through every ‘video’ and the method “.keys()” grabs the ID and assigns to variable “key”
@@ -36,8 +36,8 @@ for key in graph.keys():
 # more complex AND in 3 parts. First for loop declares 2 variables. It assigns the 
   for label, link_key in graph[key]["link"].items():
 
-# “%s” is assigned var “key” again (which is the ID)
-# next “%s” updates to var “link_key” (which is the annotation’s ID)
+# 1st "%s” is assigned var “key” again (which is the ID)
+# 2nd “%s” updates to var “link_key” (which is the annotation’s ID)
 # 3rd “%s” updates to var “label” (which is the annotation’s text. Comes from the inner json key)
     print '"%s" -> "%s" [label="%s"]' % (key, link_key, label)
 # I think the var “link_key” shouldve been called “link_value” since it becomes the json value
